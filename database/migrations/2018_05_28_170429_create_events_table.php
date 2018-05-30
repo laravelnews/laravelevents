@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('url')->nullable();
+            $table->string('price')->nullable();
             $table->longText('description');
             $table->string('location');
             $table->integer('approved')->nullable();
