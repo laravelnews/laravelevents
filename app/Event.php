@@ -13,9 +13,10 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public static function future($perPage = 10)
+    public static function future($perPage = 20)
     {
         return self::where('starts_at', '>', time())
+            ->where('approved', 1)
             ->orderBy('starts_at')
             ->simplePaginate($perPage);
     }

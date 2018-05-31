@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Event;
 
-class AddEvent extends Controller
+class SubmitController extends Controller
 {
     public function index()
     {
@@ -18,7 +18,7 @@ class AddEvent extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'url' => 'url',
+            'url' => 'required|url',
             'price' => 'max:255',
             'location' => 'required',
             'starts_at' => 'required',
