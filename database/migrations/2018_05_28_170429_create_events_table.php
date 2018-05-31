@@ -20,6 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('price')->nullable();
             $table->longText('description');
             $table->string('location');
+            $table->string('image')->nullable();
             $table->integer('approved')->nullable();
             $table->timestamp('starts_at')->nullable();
             $table->softDeletes();
