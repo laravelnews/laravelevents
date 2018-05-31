@@ -8,7 +8,54 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  font-family: "Whitney SSm A", "Whitney SSm B";
+}
+h1,h2,h3,h4,h5,h6 {
+  color: #474747;
+  font-family: "Sentinel SSm A", "Sentinel SSm B", Georgia, serif;
+  font-weight: 700;
+}
+
 .navbar-laravel {
-  background-color: #fff;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e5e7e7;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.nav-link.button {
+  color: #f4645f;
+}
+
+.card {
+  border: 0 solid hsla(0,0%,100%,.25);
+  box-shadow: 0 1px 5px #dcdcdc;
+  transition: opacity .2s ease-in-out;
+}
+
+date {
+  color: #f4645f;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: #384348;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+footer {
+  color: #a1a1a1;
+  img {
+    max-height: 175px;
+    margin-bottom: 10px;
+  }
+  a {
+    color: #a1a1a1;
+  }
+  a:hover {
+    color: #3b3b3b;
+  }
 }

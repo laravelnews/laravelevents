@@ -14,8 +14,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6559534/6834192/css/fonts.css" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -41,7 +40,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('submit') }}">Submit an Event</a></li>
+                            <li><a class="nav-link button" href="{{ route('submit') }}">Submit an Event</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -70,5 +69,11 @@
             @yield('content')
         </main>
     </div>
+    <footer style="background: #525252; padding: 40px;">
+        <div class="text-center">
+            <img src="https://laravel-news.com/assets/images/min/dark-ln-elephant.png">
+            <p>© {{ date("Y") }} <a href="/">Laravel Events</a> — By <a href="https://ericlbarnes.com">Eric L. Barnes</a> - A division of dotdev inc.</p>
+        </div>
+    </footer>
 </body>
 </html>
