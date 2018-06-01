@@ -22,7 +22,12 @@ class SubmitController extends Controller
             'price' => 'max:255',
             'location' => 'required',
             'starts_at' => 'required',
+            'image' => 'image|dimensions:min_width=700,min_height=350,max_width=700,max_height=350',
         ]);
+
+        if ($request->has('image')) {
+            $imgPath = $request->file('image')->store('public');
+        }
 
         $event = Event::create([
             'title' => $validated['title'],
@@ -30,6 +35,7 @@ class SubmitController extends Controller
             'url' => $validated['url'],
             'price' => $validated['price'],
             'location' => $validated['location'],
+            'image' => (isset($imgPath)) ? basename($imgPath) : null,
             'starts_at' => strtotime($validated['starts_at']),
         ]);
 

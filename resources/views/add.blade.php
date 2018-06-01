@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-12 m-3">
             <div class="rounded card m-6 p-4 bg-white entry">
-                <form method="post" action="/submit">
+                <form method="post" action="/submit" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <h2 class="text-center mb-4">Add Your Laravel Event</h2>
                     <div class="alert alert-warning" role="alert">
@@ -42,8 +42,13 @@
                         <input type="text" class="form-control" id="location" name="location" placeholder="Paris, France"  value="{{ old('location') }}">
                     </div>
                     <div class="form-group">
-                        <label for="url">Event URL</label>
-                        <input type="text" class="form-control" id="url" name="url" placeholder="https://" value="{{ old('url') }}">
+                        <label for="url">URL</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="https://"  value="{{ old('url') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control" id="image" name="image" placeholder="700x350">
+                        <small id="emailHelp" class="form-text text-muted">Must be exactly 700x350 pixels</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

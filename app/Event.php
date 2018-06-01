@@ -20,4 +20,11 @@ class Event extends Model
             ->orderBy('starts_at')
             ->simplePaginate($perPage);
     }
+
+    public static function pending()
+    {
+        return self::whereNull('approved')
+            ->orderBy('created_at')
+            ->get();
+    }
 }
