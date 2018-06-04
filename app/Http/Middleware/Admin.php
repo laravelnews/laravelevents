@@ -17,11 +17,7 @@ class Admin
     public function handle($request, Closure $next, $guard = null)
     {
         if (auth()->guest() or ! auth()->user()->isAdmin()) {
-            if ($request->ajax()) {
-                return $this->response->make('Unauthorized', 401);
-            } else {
-                return $this->response->redirectGuest('login');
-            }
+            return redirect('login');
         }
         return $next($request);
     }
