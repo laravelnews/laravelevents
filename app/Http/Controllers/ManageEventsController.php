@@ -16,72 +16,54 @@ class ManageEventsController extends Controller
     {
         return view('manage.index', [
             'pending' => Event::pending(),
+            'future' => Event::future()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return view('manage.edit', [
+            'event' => Event::findOrFail($id),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'required|url',
+            'price' => 'max:255',
+            'location' => 'required',
+            'starts_at' => 'required',
+            'image' => 'image|dimensions:min_width=700,min_height=350,max_width=700,max_height=350',
+            'approved' => 'required',
+        ]);
+
+        if ($request->has('image')) {
+            $imgPath = $request->file('image')->store('public');
+        }
+
+        $event = Event::findOrFail($id);
+
+        $event->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'url' => $validated['url'],
+            'price' => $validated['price'],
+            'location' => $validated['location'],
+            'image' => (isset($imgPath)) ? basename($imgPath) : $event->image,
+            'starts_at' => strtotime($validated['starts_at']),
+            'approved' => $validated['approved'],
+        ]);
+
+        return back()->withMessage('Event updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $event->delete();
+        return back()->withMessage('Event deleted.');
     }
 }
