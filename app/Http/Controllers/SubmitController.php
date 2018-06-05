@@ -39,6 +39,6 @@ class SubmitController extends Controller
             'starts_at' => strtotime($validated['starts_at']),
         ]);
 
-        return redirect('/')->withMessage('Event added to the to be approved queue.');
+        return redirect('/')->withMessage('Event added to the queue to be approved.');
     }
 }
