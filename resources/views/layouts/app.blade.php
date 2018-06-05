@@ -43,7 +43,7 @@
                             <li>
                                 <a class="nav-link button" href="{{ route('submit') }}">
                                     @icon('date-add')
-                                Submit an Event
+                                    Submit an Event
                                 </a>
                             </li>
                         @else
@@ -53,6 +53,12 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('submit') }}">
+                                        Submit an Event
+                                    </a>
+                                    <a class="dropdown-item" href="/cp">
+                                        Control Panel
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
