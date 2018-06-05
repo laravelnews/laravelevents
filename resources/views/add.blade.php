@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label for="image">Image</label>
                         <input type="file" class="form-control" id="image" name="image" placeholder="700x350">
-                        <small id="emailHelp" class="form-text text-muted">Must be exactly 700x350 pixels</small>
+                        <small id="emailHelp" class="form-text text-muted">Must be exactly 700x350 pixels. Leave this empty and we will create it for you.</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
