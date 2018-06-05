@@ -9,6 +9,7 @@
                 @if ($event->image)
                 <a href="{{ $event->url }}" class="image">
                     <div class="date">
+                        @svg('calendar')
                         {{ $event->starts_at->format("M d, Y") }}
                     </div>
                     <img src="/storage/{{ $event->image }}" alt="" style="margin-bottom: 20px;">
