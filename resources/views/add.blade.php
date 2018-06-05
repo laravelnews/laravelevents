@@ -22,27 +22,27 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <label for="title">Title</label>
+                        <label for="title">* Title</label>
                         <input type="text" class="form-control" name="title" id="title" placeholder="Event Title" value="{{ old('title') }}">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">* Description</label>
                         <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="starts_at">Event Date</label>
+                        <label for="starts_at">* Event Date</label>
                         <input type="text" class="form-control" id="starts_at" name="starts_at" placeholder="{{ date("Y-m-d") }}" value="{{ old('starts_at', date("Y-m-d")) }}">
                     </div>
                     <div class="form-group">
-                        <label for="price">Ticket Price</label>
+                        <label for="price">* Ticket Price</label>
                         <input type="text" class="form-control" id="price" name="price" placeholder="Free, $19.99, etc." value="{{ old('price') }}">
                     </div>
                     <div class="form-group">
-                        <label for="location">Location</label>
+                        <label for="location">* Location</label>
                         <input type="text" class="form-control" id="location" name="location" placeholder="Paris, France"  value="{{ old('location') }}">
                     </div>
                     <div class="form-group">
-                        <label for="url">URL</label>
+                        <label for="url">* URL</label>
                         <input type="text" class="form-control" id="url" name="url" placeholder="https://"  value="{{ old('url') }}">
                     </div>
                     <div class="form-group">
