@@ -10462,6 +10462,27 @@ h2 a:hover {
   width: 100%;
 }
 
+.card .image {
+  position: relative;
+}
+
+.card .date {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+.card .date svg {
+  fill: #fff;
+  width: 14px;
+  display: inline-block;
+  vertical-align: text-top;
+}
+
 .footer {
   font-size: 11px;
   color: rgba(0, 0, 0, 0.5);

@@ -7,7 +7,13 @@
         <div class="col-lg-8 col-md-12 m-3">
             <div class="rounded card m-6 p-4 bg-white entry">
                 @if ($event->image)
-                <a href="{{ $event->url }}">
+                <a href="{{ $event->url }}" class="image">
+                    <div class="date">
+                        <span>
+                        @svg('calendar')
+                        {{ $event->starts_at->format("M d, Y") }}
+                        </span>
+                    </div>
                     <img src="/storage/{{ $event->image }}" alt="" style="margin-bottom: 20px;">
                 </a>
                 @endif
@@ -15,16 +21,16 @@
                 <p>{{ $event->description }}</p>
                 <div class="footer d-flex justify-content-around">
                     <div>
-                    @svg('calendar')
-                    {{ $event->starts_at->format("M d, Y") }}
-                    </div>
-                    <div>
                     @svg('location')
                     {{ $event->location }}
                     </div>
                     <div>
                     @svg('ticket') Price:
                     {{ $event->price }}
+                    </div>
+                    <div>
+                        @svg('calendar')
+                        {{ $event->starts_at->format("M d, Y") }}
                     </div>
                 </div>
             </div>

@@ -44,7 +44,24 @@ h2 a {
   img {
     width: 100%;
   }
-
+  .image {
+    position: relative;
+  }
+  .date {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px 15px;
+    font-size: 14px;
+    svg {
+      fill: #fff;
+      width: 14px;
+      display: inline-block;
+      vertical-align: text-top;
+    }
+  }
 }
 
 .footer {
