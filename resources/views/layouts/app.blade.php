@@ -87,7 +87,7 @@
             <p>© {{ date("Y") }} <a href="/">Laravel Events</a> — By <a href="https://ericlbarnes.com">Eric L. Barnes</a> - A division of dotdev inc.</p>
         </div>
     </footer>
-    @if (env('APP_ENV') == 'production')
+    @if (config('app.env') == 'production')
         <script src="//static.getclicky.com/js" type="text/javascript"></script>
         <script type="text/javascript">try{ clicky.init(101121769); }catch(e){}</script>
         <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101121769ns.gif" /></p></noscript>
