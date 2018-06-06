@@ -16,7 +16,7 @@ class ManageEventsController extends Controller
     {
         return view('manage.index', [
             'pending' => Event::pending(),
-            'future' => Event::future()
+            'future' => Event::future()->get()
         ]);
     }
 
