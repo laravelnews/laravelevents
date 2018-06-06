@@ -19,7 +19,7 @@
                         @endif
 
                         @if ($event->image)
-                            <img src="/storage/{{ $event->image }}" alt="">
+                            <img src="{{ $event->image }}" alt="">
                             <hr>
                         @endif
 

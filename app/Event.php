@@ -13,12 +13,16 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public static function future($perPage = 20)
+    public function getImageAttribute($value)
+    {
+        return url('/storage/'.$value);
+    }
+
+    public static function future()
     {
         return self::where('starts_at', '>', time())
             ->where('approved', 1)
-            ->orderBy('starts_at')
-            ->simplePaginate($perPage);
+            ->orderBy('starts_at');
     }
 
     public static function pending()

@@ -12,7 +12,7 @@
                         @svg('calendar')
                         {{ $event->starts_at->format("M d, Y") }}
                     </div>
-                    <img src="/storage/{{ $event->image }}" alt="" style="margin-bottom: 20px;">
+                    <img src="{{ $event->image }}" alt="" style="margin-bottom: 20px;">
                 </a>
                 @endif
                 <h2><a href="{{ $event->url }}">{{ $event->title }}</a></h2>
