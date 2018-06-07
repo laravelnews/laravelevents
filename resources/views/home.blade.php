@@ -16,7 +16,7 @@
                 </a>
                 @endif
                 <h2><a href="{{ $event->url }}">{{ $event->title }}</a></h2>
-                <p>{{ $event->description }}</p>
+                <p>{!! nl2br($event->description) !!}</p>
                 <div class="footer d-flex justify-content-around">
                     <div>
                     @svg('location')
