@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,14 +14,14 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public function getImageAttribute($value)
+    public function getFullImageAttribute($_)
     {
-        return url('/storage/'.$value);
+        return url('/storage/'.$this->image);
     }
 
     public static function future()
     {
-        return self::where('starts_at', '>', time())
+        return self::where('starts_at', '>', Carbon::now())
             ->where('approved', 1)
             ->orderBy('starts_at');
     }

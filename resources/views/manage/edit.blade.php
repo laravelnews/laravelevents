@@ -19,7 +19,7 @@
                         @endif
 
                         @if ($event->image)
-                            <img src="{{ $event->image }}" alt="">
+                            <img src="{{ $event->fullimage }}" alt="">
                             <hr>
                         @endif
 
