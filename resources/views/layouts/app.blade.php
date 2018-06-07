@@ -84,6 +84,12 @@
     <footer style="background: #525252; padding: 40px;">
         <div class="text-center">
             <img src="https://laravel-news.com/assets/images/min/dark-ln-elephant.png">
+            <ol class="footer__nav">
+                <li><a href="https://laravel-news.com/">Laravel News</a></li>
+                <li><a href="https://laravel.io/">Laravel.io</a></li>
+                <li><a href="https://larajobs.com/">Laravel Jobs</a></li>
+                <li><a href="https://laravel-news.com/newsletter">Laravel Newsletter</a></li>
+            </ol>
             <p>© {{ date("Y") }} <a href="/">Laravel Events</a> — By <a href="https://ericlbarnes.com">Eric L. Barnes</a> - A division of dotdev inc.</p>
         </div>
     </footer>
