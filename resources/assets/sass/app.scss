@@ -112,3 +112,23 @@ footer {
     color: #3b3b3b;
   }
 }
+
+.footer__nav{
+  margin: 27px auto;
+  text-transform: uppercase;
+  ol{
+    list-style: none;
+  }
+
+  li{
+    display: inline-block;
+    margin: 3px 15px;
+  }
+
+  a{
+    color: #fff;
+    &:hover{
+      color: #f4645f;
+    }
+  }
+}
