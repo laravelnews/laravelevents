@@ -26,7 +26,7 @@
                     @svg('ticket') Price:
                     {{ $event->price }}
                     </div>
-                    <div>
+                    <div class="d-none d-sm-none d-md-block">
                         @svg('calendar')
                         {{ $event->starts_at->format("M d, Y") }}
                     </div>
