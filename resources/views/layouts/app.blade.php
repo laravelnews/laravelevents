@@ -9,6 +9,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6559534/6834192/css/fonts.css" />
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+    @yield('header-scripts')
 </head>
 <body>
     <div id="app">
@@ -94,6 +95,7 @@
             <p>© {{ date("Y") }} <a href="/">Laravel Events</a> — By <a href="https://ericlbarnes.com">Eric L. Barnes</a> - A division of dotdev inc.</p>
         </div>
     </footer>
+    @yield('footer-scripts')
     @if (config('app.env') == 'production')
         <script src="//static.getclicky.com/js" type="text/javascript"></script>
         <script type="text/javascript">try{ clicky.init(101121769); }catch(e){}</script>
