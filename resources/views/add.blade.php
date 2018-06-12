@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('header-scripts')
+    {!! UploadCare::api()->widget->getScriptTag() !!}
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -31,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="starts_at">* Event Date</label>
-                        <input type="text" class="form-control" id="starts_at" name="starts_at" placeholder="{{ date("Y-m-d") }}" value="{{ old('starts_at', date("Y-m-d")) }}">
+                        <input type="date" class="form-control" id="starts_at" name="starts_at" placeholder="{{ date("Y-m-d") }}" value="{{ old('starts_at', date("Y-m-d")) }}">
                     </div>
                     <div class="form-group">
                         <label for="price">* Ticket Price</label>
@@ -46,14 +50,46 @@
                         <input type="text" class="form-control" id="url" name="url" placeholder="https://"  value="{{ old('url') }}">
                     </div>
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control" id="image" name="image" placeholder="700x350">
-                        <small id="emailHelp" class="form-text text-muted">Must be exactly 700x350 pixels. Leave this empty and we will create it for you.</small>
+                        {!! UploadCare::api()->widget->getInputTag('image', [
+                            'data-crop' => '700x350 minimum',
+                            'data-image-only'
+                            ]) !!}
                     </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer-scripts')
+<script>
+    UPLOADCARE_LOCALE_TRANSLATIONS = {
+        // messages for widget
+        errors: {
+            'fileMinimalSize': 'File is too small',
+        },
+        // messages for dialog’s error page
+        dialog: {
+            tabs: {
+                preview: {
+                    error: {
+                        'fileMinimalSize': {
+                            title: 'Opps!',
+                            text: 'The image size should be at least 700x350 pixels.',
+                            back: 'Try Again'
+                        }
+                    }
+                }
+            }
+        }
+    };
+    uploadcare.Widget('[name="image"]').validators.push(function (fileInfo) {
+        if (fileInfo.size !== null && fileInfo.size < 700 * 350) {
+            throw new Error("fileMinimalSize");
+        }
+    });
+</script>
 @endsection

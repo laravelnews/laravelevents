@@ -16,7 +16,7 @@ class Event extends Model
 
     public function getFullImageAttribute($_)
     {
-        return url('/storage/'.$this->image);
+        return $this->image;
     }
 
     public static function future()

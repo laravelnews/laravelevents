@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Event;
+use UploadCare;
 
 class SubmitController extends Controller
 {
@@ -15,6 +16,15 @@ class SubmitController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->has('image')) {
+            try {
+                $image = UploadCare::api()->getFile($request->image);
+                $imgPath = $image->resize(700, 350)->getUrl();
+            } catch (\Throwable $e) {
+                $imgPath = null;
+            }
+        }
+
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -22,11 +32,15 @@ class SubmitController extends Controller
             'price' => 'max:255',
             'location' => 'required',
             'starts_at' => 'required',
-            'image' => 'image|dimensions:min_width=700,min_height=350,max_width=700,max_height=350',
+            'image' => [function ($attribute, $value, $fail) use ($imgPath) {
+                if (!empty($attribute) && empty($imgPath)) {
+                    return $fail($attribute .' is not valid');
+                }
+            }]
         ]);
 
-        if ($request->has('image')) {
-            $imgPath = $request->file('image')->store('public');
+        if (!empty($image)) {
+            $image->store();
         }
 
         $event = Event::create([
@@ -35,7 +49,7 @@ class SubmitController extends Controller
             'url' => $validated['url'],
             'price' => $validated['price'],
             'location' => $validated['location'],
-            'image' => (isset($imgPath)) ? basename($imgPath) : null,
+            'image' => $imgPath ? $imgPath : null,
             'starts_at' => strtotime($validated['starts_at']),
         ]);
 
