@@ -41,6 +41,7 @@
                     <th>Starts At</th>
                     <th>Location</th>
                     <th>Price</th>
+                    <th></th>
                 </tr>
                 @foreach ($future as $event)
                 <tr>
@@ -48,6 +49,13 @@
                     <td>{{ $event->starts_at->format("M d, Y") }}</td>
                     <td>{{ $event->location }}</td>
                     <td>{{ $event->price }}</td>
+                    <td>
+                        <form action="/cp/manage/{{ $event->id }}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </table>
