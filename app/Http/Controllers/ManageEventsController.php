@@ -45,15 +45,10 @@ class ManageEventsController extends Controller
             'price' => 'max:255',
             'location' => 'required',
             'starts_at' => 'required',
-            'image' => [function ($attribute, $value, $fail) use ($imgPath) {
-                if (! empty($attribute) && empty($imgPath)) {
-                    return $fail($attribute . ' is not valid');
-                }
-            }],
             'approved' => 'required',
         ]);
 
-        if (! empty($image)) {
+        if ($imgPath) {
             $image->store();
         }
 
@@ -65,7 +60,7 @@ class ManageEventsController extends Controller
             'url' => $validated['url'],
             'price' => $validated['price'],
             'location' => $validated['location'],
-            'image' => $imgPath ? $imgPath : null,
+            'image' => $imgPath ? $imgPath : $event->image,
             'starts_at' => strtotime($validated['starts_at']),
             'approved' => $validated['approved'],
         ]);
