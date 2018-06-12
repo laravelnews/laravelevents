@@ -19,7 +19,7 @@ class SubmitController extends Controller
         if ($request->has('image')) {
             try {
                 $image = UploadCare::api()->getFile($request->image);
-                $imgPath = $image->resize(700, 350)->getUrl();
+                $imgPath = $image->resize(1400, 700)->getUrl();
             } catch (\Throwable $e) {
                 $imgPath = null;
             }
@@ -33,13 +33,13 @@ class SubmitController extends Controller
             'location' => 'required',
             'starts_at' => 'required',
             'image' => [function ($attribute, $value, $fail) use ($imgPath) {
-                if (!empty($attribute) && empty($imgPath)) {
+                if (! empty($attribute) && empty($imgPath)) {
                     return $fail($attribute .' is not valid');
                 }
             }]
         ]);
 
-        if (!empty($image)) {
+        if (! empty($image)) {
             $image->store();
         }
 

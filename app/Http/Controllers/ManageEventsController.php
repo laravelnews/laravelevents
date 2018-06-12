@@ -29,6 +29,15 @@ class ManageEventsController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($request->has('image')) {
+            try {
+                $image = UploadCare::api()->getFile($request->image);
+                $imgPath = $image->resize(1400, 700)->getUrl();
+            } catch (\Throwable $e) {
+                $imgPath = null;
+            }
+        }
+
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -36,12 +45,16 @@ class ManageEventsController extends Controller
             'price' => 'max:255',
             'location' => 'required',
             'starts_at' => 'required',
-            'image' => 'image|dimensions:min_width=700,min_height=350,max_width=700,max_height=350',
+            'image' => [function ($attribute, $value, $fail) use ($imgPath) {
+                if (! empty($attribute) && empty($imgPath)) {
+                    return $fail($attribute . ' is not valid');
+                }
+            }],
             'approved' => 'required',
         ]);
 
-        if ($request->has('image')) {
-            $imgPath = $request->file('image')->store('public');
+        if (! empty($image)) {
+            $image->store();
         }
 
         $event = Event::findOrFail($id);
@@ -52,7 +65,7 @@ class ManageEventsController extends Controller
             'url' => $validated['url'],
             'price' => $validated['price'],
             'location' => $validated['location'],
-            'image' => (isset($imgPath)) ? basename($imgPath) : $event->image,
+            'image' => $imgPath ? $imgPath : null,
             'starts_at' => strtotime($validated['starts_at']),
             'approved' => $validated['approved'],
         ]);

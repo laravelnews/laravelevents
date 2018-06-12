@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         {!! UploadCare::api()->widget->getInputTag('image', [
-                            'data-crop' => '700x350 minimum',
+                            'data-crop' => '1400x700 minimum',
                             'data-image-only'
                             ]) !!}
                     </div>
@@ -78,7 +78,7 @@
                     error: {
                         'fileMinimalSize': {
                             title: 'Opps!',
-                            text: 'The image size should be at least 700x350 pixels.',
+                            text: 'The image size should be at least 1400x700 pixels.',
                             back: 'Try Again'
                         }
                     }
@@ -87,7 +87,7 @@
         }
     };
     uploadcare.Widget('[name="image"]').validators.push(function (fileInfo) {
-        if (fileInfo.size !== null && fileInfo.size < 700 * 350) {
+        if (fileInfo.size !== null && fileInfo.size < 1400 * 700) {
             throw new Error("fileMinimalSize");
         }
     });

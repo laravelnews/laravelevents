@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('header-scripts')
+    {!! UploadCare::api()->widget->getScriptTag() !!}
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -49,8 +53,8 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="file" class="form-control" id="image" name="image" placeholder="700x350">
-                            <small id="emailHelp" class="form-text text-muted">Must be exactly 700x350 pixels</small>
+                            {!! UploadCare::api()->widget->getInputTag('image', ['data-crop' => '1400x700 minimum','data-image-only']) !!}
+                            <small id="emailHelp" class="form-text text-muted">Must be exactly 1400x700 pixels</small>
                         </div>
                         <div class="form-group">
                             <label for="approved">Approved</label>
@@ -65,4 +69,34 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer-scripts')
+<script>
+    UPLOADCARE_LOCALE_TRANSLATIONS = {
+        // messages for widget
+        errors: {
+            'fileMinimalSize': 'File is too small',
+        },
+        // messages for dialog’s error page
+        dialog: {
+            tabs: {
+                preview: {
+                    error: {
+                        'fileMinimalSize': {
+                            title: 'Opps!',
+                            text: 'The image size should be at least 1400x700 pixels.',
+                            back: 'Try Again'
+                        }
+                    }
+                }
+            }
+        }
+    };
+    uploadcare.Widget('[name="image"]').validators.push(function (fileInfo) {
+        if (fileInfo.size !== null && fileInfo.size < 1400 * 700) {
+            throw new Error("fileMinimalSize");
+        }
+    });
+</script>
 @endsection
