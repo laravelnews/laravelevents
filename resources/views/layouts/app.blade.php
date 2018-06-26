@@ -93,6 +93,7 @@
                 <li><a href="https://laravel-news.com/newsletter">Laravel Newsletter</a></li>
             </ol>
             <p>© {{ date("Y") }} <a href="/">Laravel Events</a> — By <a href="https://ericlbarnes.com">Eric L. Barnes</a> - A division of dotdev inc.</p>
+            <p class="source">{&mdash;<a href="https://github.com/laravelnews/laravelevents">Source Code</a> &mdash;}</p>
         </div>
     </footer>
     @yield('footer-scripts')

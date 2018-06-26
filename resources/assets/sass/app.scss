@@ -132,3 +132,15 @@ footer {
     }
   }
 }
+
+.source {
+  font-size: 12px;
+  color: #a1a1a1;
+  a{
+    color: #a1a1a1;
+    &:hover{
+      color: #a1a1a1;
+      text-decoration: underline;
+    }
+  }
+}
