@@ -34,6 +34,7 @@ class ManageEventsController extends Controller
                 $image = UploadCare::api()->getFile($request->image);
                 $imgPath = $image->resize(1400, 700)->getUrl();
             } catch (\Throwable $e) {
+                dd($e);
                 $imgPath = null;
             }
         }
