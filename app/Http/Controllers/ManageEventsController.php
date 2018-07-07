@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use UploadCare;
 use Illuminate\Http\Request;
 
 class ManageEventsController extends Controller
