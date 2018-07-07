@@ -63,33 +63,3 @@
     </div>
 </div>
 @endsection
-
-@section('footer-scripts')
-<script>
-    UPLOADCARE_LOCALE_TRANSLATIONS = {
-        // messages for widget
-        errors: {
-            'fileMinimalSize': 'File is too small',
-        },
-        // messages for dialog’s error page
-        dialog: {
-            tabs: {
-                preview: {
-                    error: {
-                        'fileMinimalSize': {
-                            title: 'Opps!',
-                            text: 'The image size should be at least 1400x700 pixels.',
-                            back: 'Try Again'
-                        }
-                    }
-                }
-            }
-        }
-    };
-    uploadcare.Widget('[name="image"]').validators.push(function (fileInfo) {
-        if (fileInfo.size !== null && fileInfo.size < 1400 * 700) {
-            throw new Error("fileMinimalSize");
-        }
-    });
-</script>
-@endsection
