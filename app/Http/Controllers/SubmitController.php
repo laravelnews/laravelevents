@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use App\Event;
+use App\Mail\EventCreated;
 use UploadCare;
 
 class SubmitController extends Controller
@@ -47,7 +49,9 @@ class SubmitController extends Controller
             'image' => $imgPath,
             'starts_at' => strtotime($validated['starts_at']),
         ]);
-
+        
+        Mail::to(config('mail.from.address'))->send(new EventCreated($event));
+        
         return redirect('/')->withMessage('Event added to the queue to be approved.');
     }
 }
