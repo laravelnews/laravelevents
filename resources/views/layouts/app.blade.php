@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6559534/6834192/css/fonts.css" />
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     @yield('header-scripts')
+    @include('feed::links')
 </head>
 <body>
     <div id="app">

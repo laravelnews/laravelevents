@@ -17,4 +17,5 @@ Route::get('/submit', 'SubmitController@index')->name('submit');
 Route::post('/submit', 'SubmitController@store');
 Route::get('/cp', function(){ return redirect('/cp/manage'); });
 Route::resource('/cp/manage', 'ManageEventsController');
+Route::feeds();
 Auth::routes();
