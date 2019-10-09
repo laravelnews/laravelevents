@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('header-scripts')
-    {!! UploadCare::api()->widget->getScriptTag() !!}
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -20,11 +16,6 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
-
-                        @if ($event->image)
-                            <img src="{{ $event->fullimage }}" alt="">
-                            <hr>
                         @endif
 
                         <div class="form-group">
@@ -50,11 +41,6 @@
                         <div class="form-group">
                             <label for="url">URL</label>
                             <input type="text" class="form-control" id="url" name="url" placeholder="https://"  value="{{ old('url', $event->url) }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Image</label>
-                            {!! UploadCare::api()->widget->getInputTag('image', ['data-crop' => '1400x700 minimum','data-image-only']) !!}
-                            <small id="emailHelp" class="form-text text-muted">Must be exactly 1400x700 pixels</small>
                         </div>
                         <div class="form-group">
                             <label for="approved">Approved</label>

@@ -14,11 +14,6 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public function getFullImageAttribute($_)
-    {
-        return $this->image;
-    }
-
     public static function future()
     {
         return self::where('starts_at', '>', Carbon::now())
