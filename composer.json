@@ -10,8 +10,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "nothingworks/blade-svg": "^0.2.2",
-        "uploadcare/uploadcare-php": "^2.2"
+        "nothingworks/blade-svg": "^0.2.2"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('header-scripts')
-    {!! UploadCare::api()->widget->getScriptTag() !!}
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -48,12 +44,6 @@
                     <div class="form-group">
                         <label for="url">* URL</label>
                         <input type="text" class="form-control" id="url" name="url" placeholder="https://"  value="{{ old('url') }}">
-                    </div>
-                    <div class="form-group">
-                        {!! UploadCare::api()->widget->getInputTag('image', [
-                            'data-crop' => '1400x700 minimum',
-                            'data-image-only'
-                            ]) !!}
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>

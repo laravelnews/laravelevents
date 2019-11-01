@@ -19,7 +19,7 @@
             mso-margin-bottom-alt: 0px;
             mso-padding-alt: 0px 0px 0px 0px;
         }
-        
+
         p,
         h1,
         h2,
@@ -30,22 +30,22 @@
             padding-top: 0;
             padding-bottom: 0;
         }
-        
+
         span.preheader {
             display: none;
             font-size: 1px;
         }
-        
+
         html {
             width: 100%;
         }
-        
+
         table {
             font-size: 14px;
             border: 0;
         }
         /* ----------- responsivity ----------- */
-        
+
         @media only screen and (max-width: 640px) {
             /*------ top header ------ */
             .main-header {
@@ -95,7 +95,7 @@
                 height: auto !important;
             }
         }
-        
+
         @media only screen and (max-width: 479px) {
             /*------ top header ------ */
             .main-header {
@@ -187,18 +187,6 @@
         <tr>
             <td align="center">
                 <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-                    @if($event->image)
-                        <tr>
-
-                            <td align="center" class="section-img">
-                                <a href="" style=" border-style: none !important; display: block; border: 0 !important;"><img src="{{ $event->fullimage }}" style="display: block; width: 590px;" width="590" border="0" alt="" /></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="20" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
-                        </tr>
-                    @endif
-
                     <tr>
                         <td align="center" style="color: #343434; font-size: 24px; font-weight:700;letter-spacing: 3px; line-height: 35px;" class="main-header">
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use UploadCare;
 use Illuminate\Http\Request;
 
 class ManageEventsController extends Controller
@@ -30,16 +29,6 @@ class ManageEventsController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($request->has('image')) {
-            try {
-                $image = UploadCare::api()->getFile($request->image);
-                $imgPath = $image->resize(1400, 700)->getUrl();
-            } catch (\Throwable $e) {
-                dd($e);
-                $imgPath = null;
-            }
-        }
-
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -50,10 +39,6 @@ class ManageEventsController extends Controller
             'approved' => 'required',
         ]);
 
-        if ($imgPath) {
-            $image->store();
-        }
-
         $event = Event::findOrFail($id);
 
         $event->update([
@@ -62,7 +47,6 @@ class ManageEventsController extends Controller
             'url' => $validated['url'],
             'price' => $validated['price'],
             'location' => $validated['location'],
-            'image' => $imgPath ? $imgPath : $event->image,
             'starts_at' => strtotime($validated['starts_at']),
             'approved' => $validated['approved'],
         ]);
