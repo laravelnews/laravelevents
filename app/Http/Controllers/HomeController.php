@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\Http\Resources\EventResource;
+use App\Models\Event;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home', ['events' => Event::future()->simplePaginate(20)]);
-    }
-
-    public function api()
-    {
-        return Event::future()->get();
+        return Inertia::render('Home/Index', [
+                'events' => EventResource::collection(
+                    Event::future()->paginate(20)
+                ),
+            ]);
     }
 }

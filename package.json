@@ -1,22 +1,30 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "dev": "npx mix",
+        "development": "npx mix",
+        "watch": "npx mix watch",
+        "hot": "npx mix hot",
+        "prod": "npx mix --production",
+        "production": "npx mix --production"
     },
     "devDependencies": {
-        "axios": "^0.18",
-        "bootstrap": "^4.0.0",
-        "popper.js": "^1.12",
-        "cross-env": "^5.1",
-        "jquery": "^3.2",
-        "laravel-mix": "^2.0",
-        "lodash": "^4.17.4",
-        "vue": "^2.5.7"
+        "@inertiajs/inertia": "^0.4.0",
+        "@inertiajs/inertia-vue3": "^0.1.0",
+        "@vue/compiler-sfc": "^3.0.2",
+        "axios": "^0.20.0",
+        "laravel-mix": "^6.0.0-beta.5",
+        "postcss": "^8.1.4",
+        "vue": "^3.0.0",
+        "vue-loader": "^16.0.0-beta.9"
+    },
+    "dependencies": {
+        "@headlessui/vue": "^0.2.0",
+        "@inertiajs/progress": "^0.2.1",
+        "@tailwindcss/ui": "^0.6.2",
+        "flatpickr": "^4.6.6",
+        "spacetime": "^6.8.0",
+        "tailwindcss": "^1.9.6",
+        "trix": "^1.3.0"
     }
 }
