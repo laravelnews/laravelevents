@@ -2,40 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
-use App\Mail\EventCreated;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Resources\StubEventResource;
+use App\Models\Event;
+use App\Notifications\EventCreated;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class SubmitController extends Controller
 {
     public function index()
     {
-        return view('add');
+        return Inertia::render('Event/Create', [
+            'event' => StubEventResource::make(collect([])),
+        ]);
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'url' => 'required|url',
-            'price' => 'max:255',
-            'location' => 'required',
-            'starts_at' => 'required',
-        ]);
+        $event = Event::create(Request::validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:280'],
+            'url' => ['required', 'url'],
+            'price' => ['max:255'],
+            'location' => ['required', 'max:255'],
+            'starts_at' => ['required'],
+        ]));
 
-        $event = Event::create([
-            'title' => $validated['title'],
-            'description' => $validated['description'],
-            'url' => $validated['url'],
-            'price' => $validated['price'],
-            'location' => $validated['location'],
-            'starts_at' => strtotime($validated['starts_at']),
-        ]);
+        Notification::route('mail', Config::get('mail.from.address'))
+            ->notify(new EventCreated($event));
 
-        Mail::to(config('mail.from.address'))->send(new EventCreated($event));
-
-        return redirect('/')->withMessage('Event added to the queue to be approved.');
+        return Redirect::route('home')->with('success', 'Event added to the queue to be approved.');
     }
 }

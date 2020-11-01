@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SubmitController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,10 +16,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/api', 'HomeController@api');
-Route::get('/submit', 'SubmitController@index')->name('submit');
-Route::post('/submit', 'SubmitController@store');
-Route::get('/cp', function(){ return redirect('/cp/manage'); });
-Route::resource('/cp/manage', 'ManageEventsController');
-Auth::routes();
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/event/{event}', [EventController::class, 'index'])->name('event');
+
+Route::get('/submit', [SubmitController::class, 'index'])->name('submit');
+Route::post('/submit', [SubmitController::class, 'store']);
